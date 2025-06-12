@@ -37,6 +37,7 @@
         progressBar: null,
         nav: null,
         skipLink: null,
+        backToTop: null,
         tooltips: [],
         animatedElements: []
     };
@@ -205,6 +206,13 @@
                 elements.langToggle.setAttribute('aria-label', label);
             }
             
+            // Update back to top button
+            if (elements.backToTop) {
+                const backToTopLabel = lang === 'es' ? 'Volver al inicio' : 'Back to top';
+                elements.backToTop.setAttribute('aria-label', backToTopLabel);
+                elements.backToTop.setAttribute('title', backToTopLabel);
+            }
+            
             // Announce language change
             const message = lang === 'es' ? 'Idioma cambiado a Español' : 'Language changed to English';
             utils.announce(message);
@@ -221,11 +229,13 @@
         init() {
             this.updateProgress();
             this.handleNavTransparency();
+            this.updateBackToTop();
             
             // Throttled scroll handler
             const scrollHandler = utils.throttle(() => {
                 this.updateProgress();
                 this.handleNavTransparency();
+                this.updateBackToTop();
                 animationManager.checkVisibility();
             }, 100);
             
@@ -253,6 +263,36 @@
             } else {
                 elements.nav.classList.remove('nav-scrolled');
             }
+        },
+
+        updateBackToTop() {
+            if (!elements.backToTop) return;
+            
+            const scrolled = window.pageYOffset > window.innerHeight * 0.5;
+            if (scrolled) {
+                elements.backToTop.classList.add('show');
+            } else {
+                elements.backToTop.classList.remove('show');
+            }
+        },
+
+        scrollToTop() {
+            if (state.reducedMotion) {
+                window.scrollTo(0, 0);
+                return;
+            }
+            
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Announce to screen readers
+            const isSpanish = state.language === 'es';
+            const message = isSpanish ? 
+                'Volviendo al inicio de la página' : 
+                'Returning to top of page';
+            utils.announce(message);
         },
 
         smoothScroll(target) {
@@ -399,9 +439,11 @@
                     setTimeout(() => {
                         skipLink.style.top = '1rem';
                         skipLink.style.background = 'var(--accent-color)';
+                        skipLink.style.transform = 'translateX(-50%) scale(1.05)';
                         setTimeout(() => {
-                            skipLink.style.top = '-50px';
+                            skipLink.style.top = '-60px';
                             skipLink.style.background = 'var(--primary-color)';
+                            skipLink.style.transform = 'translateX(-50%)';
                         }, 2000);
                     }, 1000);
                 }
@@ -701,6 +743,14 @@
                 });
             }
             
+            // Back to top button
+            elements.backToTop = document.getElementById('backToTop');
+            if (elements.backToTop) {
+                elements.backToTop.addEventListener('click', () => {
+                    scrollManager.scrollToTop();
+                });
+            }
+            
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', (e) => {
@@ -709,16 +759,33 @@
                     const target = document.querySelector(targetId);
                     
                     if (target) {
-                        scrollManager.smoothScroll(target);
+                        // Special handling for hero/top links
+                        if (targetId === '#hero' || targetId === '#') {
+                            scrollManager.scrollToTop();
+                        } else {
+                            scrollManager.smoothScroll(target);
+                        }
                         
                         // Update active nav state
                         document.querySelectorAll('.nav-link').forEach(link => {
                             link.classList.remove('active');
                         });
-                        anchor.classList.add('active');
+                        if (anchor.classList.contains('nav-link')) {
+                            anchor.classList.add('active');
+                        }
                     }
                 });
             });
+            
+            // Make logo clickable to go to top
+            const logo = document.querySelector('.nav-brand');
+            if (logo) {
+                logo.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    scrollManager.scrollToTop();
+                });
+                logo.style.cursor = 'pointer';
+            }
             
             // Button actions setup
             this.setupButtonActions();
@@ -1032,6 +1099,7 @@
         // Cache DOM elements
         elements.progressBar = document.getElementById('progressBar');
         elements.nav = document.querySelector('.nav, nav');
+        elements.backToTop = document.getElementById('backToTop');
         
         // Initialize managers
         themeManager.init();
