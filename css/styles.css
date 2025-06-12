@@ -593,7 +593,8 @@ body {
 }
 
 .tooltip-container:hover .tooltip,
-.tooltip-container:focus-within .tooltip {
+.tooltip-container:focus-within .tooltip,
+.tooltip.show {
     visibility: visible;
     opacity: 1;
     transform: translateX(-50%) translateY(0);
@@ -1018,6 +1019,26 @@ body {
     .sm\:space-x-8 > * + * { margin-left: 2rem; }
 }
 
+@media (max-width: 767px) {
+    .tooltip {
+        position: fixed;
+        top: auto;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        transform: none !important;
+        max-width: none;
+    }
+    
+    .tooltip::after {
+        display: none;
+    }
+    
+    .tooltip.show {
+        transform: none !important;
+    }
+}
+
 @media (min-width: 768px) {
     .md\:flex { display: flex; }
     .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1034,20 +1055,6 @@ body {
     
     .card {
         padding: 1.5rem;
-    }
-    
-    .tooltip {
-        position: fixed;
-        top: auto;
-        bottom: 1rem;
-        left: 1rem;
-        right: 1rem;
-        transform: none;
-        max-width: none;
-    }
-    
-    .tooltip::after {
-        display: none;
     }
 }
 

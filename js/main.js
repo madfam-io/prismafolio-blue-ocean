@@ -392,24 +392,51 @@
                 
                 if (trigger && tooltip) {
                     // Make tooltip keyboard accessible
-                    trigger.setAttribute('aria-describedby', `tooltip-${Math.random().toString(36).substr(2, 9)}`);
-                    tooltip.id = trigger.getAttribute('aria-describedby');
+                    const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
+                    trigger.setAttribute('aria-describedby', tooltipId);
+                    tooltip.id = tooltipId;
                     
+                    // Show/hide tooltip function
+                    const showTooltip = () => {
+                        // Hide all other tooltips first
+                        document.querySelectorAll('.tooltip').forEach(t => {
+                            t.classList.remove('show');
+                        });
+                        tooltip.classList.add('show');
+                    };
+                    
+                    const hideTooltip = () => {
+                        tooltip.classList.remove('show');
+                    };
+                    
+                    // Click handler for mobile/keyboard
                     trigger.addEventListener('click', (e) => {
                         e.preventDefault();
-                        const isVisible = tooltip.style.visibility === 'visible';
-                        tooltip.style.visibility = isVisible ? 'hidden' : 'visible';
-                        tooltip.style.opacity = isVisible ? '0' : '1';
+                        if (tooltip.classList.contains('show')) {
+                            hideTooltip();
+                        } else {
+                            showTooltip();
+                        }
                     });
                     
-                    // Close on blur
+                    // Mouse events for desktop
+                    trigger.addEventListener('mouseenter', showTooltip);
+                    container.addEventListener('mouseleave', hideTooltip);
+                    
+                    // Close on blur for accessibility
                     trigger.addEventListener('blur', () => {
                         setTimeout(() => {
-                            if (!tooltip.contains(document.activeElement)) {
-                                tooltip.style.visibility = 'hidden';
-                                tooltip.style.opacity = '0';
+                            if (!container.contains(document.activeElement)) {
+                                hideTooltip();
                             }
                         }, 200);
+                    });
+                    
+                    // Escape key to close
+                    trigger.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape') {
+                            hideTooltip();
+                        }
                     });
                 }
             });
@@ -668,6 +695,9 @@
                 });
             });
             
+            // Button actions setup
+            this.setupButtonActions();
+            
             // Button ripple effect
             document.querySelectorAll('.btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
@@ -687,6 +717,78 @@
                     setTimeout(() => {
                         ripple.remove();
                     }, 600);
+                });
+            });
+        },
+
+        setupButtonActions() {
+            // Get current language for messages
+            const getCurrentLanguageMessages = () => {
+                const isSpanish = state.language === 'es';
+                return {
+                    startFree: {
+                        title: isSpanish ? '¡Próximamente!' : 'Coming Soon!',
+                        message: isSpanish ? 'Estamos trabajando en esta funcionalidad. ¡Mantente atento!' : 'We are working on this feature. Stay tuned!'
+                    },
+                    watchDemo: {
+                        title: isSpanish ? 'Demo en Desarrollo' : 'Demo in Development',
+                        message: isSpanish ? 'Estamos preparando una demostración increíble. ¡Vuelve pronto!' : 'We are preparing an amazing demo. Come back soon!'
+                    },
+                    pricing: {
+                        title: isSpanish ? 'Funcionalidad en Desarrollo' : 'Feature in Development',
+                        message: isSpanish ? 'Los pagos y suscripciones estarán disponibles pronto.' : 'Payments and subscriptions will be available soon.'
+                    },
+                    avatar: {
+                        title: isSpanish ? 'Avatares Profesionales' : 'Professional Avatars',
+                        message: isSpanish ? 'Esta funcionalidad te permitirá crear diferentes versiones de tu portfolio según tu audiencia objetivo.' : 'This feature will allow you to create different versions of your portfolio according to your target audience.'
+                    }
+                };
+            };
+
+            // Hero section buttons
+            const startFreeBtn = document.querySelector('button .fas.fa-rocket')?.closest('button');
+            if (startFreeBtn) {
+                startFreeBtn.addEventListener('click', () => {
+                    const messages = getCurrentLanguageMessages();
+                    siteUtils.showTempPopup(messages.startFree.title, messages.startFree.message);
+                });
+            }
+
+            const watchDemoBtn = document.querySelector('button .fas.fa-play-circle')?.closest('button');
+            if (watchDemoBtn) {
+                watchDemoBtn.addEventListener('click', () => {
+                    const messages = getCurrentLanguageMessages();
+                    siteUtils.showTempPopup(messages.watchDemo.title, messages.watchDemo.message);
+                });
+            }
+
+            // Professional avatars buttons
+            document.querySelectorAll('[aria-describedby="client-desc"], [aria-describedby="recruiter-desc"], [aria-describedby="academic-desc"]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const messages = getCurrentLanguageMessages();
+                    siteUtils.showTempPopup(messages.avatar.title, messages.avatar.message);
+                });
+            });
+
+            // Pricing buttons
+            document.querySelectorAll('.pricing-card .btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const messages = getCurrentLanguageMessages();
+                    siteUtils.showTempPopup(messages.pricing.title, messages.pricing.message);
+                });
+            });
+
+            // Social media links (for demo purposes)
+            document.querySelectorAll('footer a[aria-label="Twitter"], footer a[aria-label="LinkedIn"], footer a[aria-label="Instagram"], footer a[aria-label="GitHub"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isSpanish = state.language === 'es';
+                    const platform = link.getAttribute('aria-label');
+                    const title = isSpanish ? 'Redes Sociales' : 'Social Media';
+                    const message = isSpanish ? 
+                        `Síguenos en ${platform} para las últimas actualizaciones.` : 
+                        `Follow us on ${platform} for the latest updates.`;
+                    siteUtils.showTempPopup(title, message);
                 });
             });
         }
@@ -747,6 +849,159 @@
         }
     };
 
+    // Utility functions for site functionality
+    const siteUtils = {
+        updateCurrentYear() {
+            const currentYearElement = document.getElementById('currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+        },
+
+        // Create and show a temporary popup
+        showTempPopup(title, message, duration = 3000) {
+            // Remove any existing popup
+            const existingPopup = document.querySelector('.temp-popup');
+            if (existingPopup) {
+                existingPopup.remove();
+            }
+
+            // Create popup element
+            const popup = document.createElement('div');
+            popup.className = 'temp-popup';
+            popup.innerHTML = `
+                <div class="temp-popup-content">
+                    <h3>${title}</h3>
+                    <p>${message}</p>
+                    <button class="temp-popup-close" aria-label="Close popup">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+
+            // Add popup styles
+            popup.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(8px);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: popup-fade-in 0.3s ease;
+                padding: 1rem;
+            `;
+
+            const content = popup.querySelector('.temp-popup-content');
+            content.style.cssText = `
+                background: var(--bg-elevated);
+                color: var(--text-primary);
+                padding: 2rem;
+                border-radius: 1rem;
+                max-width: 400px;
+                width: 100%;
+                box-shadow: var(--shadow-xl);
+                border: 1px solid var(--border-primary);
+                text-align: center;
+                position: relative;
+                animation: popup-scale-in 0.3s ease;
+            `;
+
+            content.querySelector('h3').style.cssText = `
+                margin: 0 0 1rem 0;
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--primary-color);
+            `;
+
+            content.querySelector('p').style.cssText = `
+                margin: 0;
+                line-height: 1.6;
+                color: var(--text-secondary);
+            `;
+
+            const closeBtn = content.querySelector('.temp-popup-close');
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: 0.75rem;
+                right: 0.75rem;
+                background: none;
+                border: none;
+                color: var(--text-tertiary);
+                cursor: pointer;
+                font-size: 1.125rem;
+                padding: 0.25rem;
+                border-radius: 0.25rem;
+                transition: color 0.2s ease;
+            `;
+
+            // Add CSS animation keyframes if not already added
+            if (!document.querySelector('#popup-animations')) {
+                const style = document.createElement('style');
+                style.id = 'popup-animations';
+                style.textContent = `
+                    @keyframes popup-fade-in {
+                        from { opacity: 0; }
+                        to { opacity: 1; }
+                    }
+                    @keyframes popup-scale-in {
+                        from { transform: scale(0.9); opacity: 0; }
+                        to { transform: scale(1); opacity: 1; }
+                    }
+                    @keyframes popup-fade-out {
+                        from { opacity: 1; }
+                        to { opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            // Close popup function
+            const closePopup = () => {
+                popup.style.animation = 'popup-fade-out 0.2s ease';
+                setTimeout(() => {
+                    if (popup.parentNode) {
+                        popup.remove();
+                    }
+                }, 200);
+            };
+
+            // Event listeners
+            closeBtn.addEventListener('click', closePopup);
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    closePopup();
+                }
+            });
+
+            // Escape key to close
+            const escapeHandler = (e) => {
+                if (e.key === 'Escape') {
+                    closePopup();
+                    document.removeEventListener('keydown', escapeHandler);
+                }
+            };
+            document.addEventListener('keydown', escapeHandler);
+
+            // Add to DOM
+            document.body.appendChild(popup);
+
+            // Auto-close after duration
+            if (duration > 0) {
+                setTimeout(closePopup, duration);
+            }
+
+            // Focus management for accessibility
+            closeBtn.focus();
+
+            return popup;
+        }
+    };
+
     // Initialize everything
     const init = () => {
         // Cache DOM elements
@@ -761,6 +1016,9 @@
         a11yManager.init();
         eventHandlers.init();
         performanceMonitor.init();
+        
+        // Update current year
+        siteUtils.updateCurrentYear();
         
         // Register service worker
         registerServiceWorker();
