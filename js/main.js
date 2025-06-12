@@ -36,7 +36,6 @@
         langToggle: null,
         progressBar: null,
         nav: null,
-        skipLink: null,
         backToTop: null,
         tooltips: [],
         animatedElements: []
@@ -177,9 +176,9 @@
     const langManager = {
         init() {
             const savedLang = utils.storage.get(config.storageKeys.lang);
-            const browserLang = navigator.language.substring(0, 2);
             
-            state.language = savedLang || (browserLang === 'es' ? 'es' : 'en') || config.defaultLang;
+            // Always default to Spanish unless user has explicitly chosen English
+            state.language = savedLang || config.defaultLang; // config.defaultLang is 'es'
             this.apply(state.language);
         },
 
@@ -376,7 +375,6 @@
     const a11yManager = {
         init() {
             this.setupKeyboardNav();
-            this.setupSkipLinks();
             this.enhanceTooltips();
             this.setupAriaLive();
             this.enhanceFocus();
@@ -406,48 +404,6 @@
                     });
                 }
             });
-        },
-
-        setupSkipLinks() {
-            const skipLink = document.querySelector('.skip-link');
-            if (skipLink) {
-                skipLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const target = document.querySelector(skipLink.getAttribute('href'));
-                    if (target) {
-                        target.setAttribute('tabindex', '-1');
-                        target.focus();
-                        scrollManager.smoothScroll(target);
-                        
-                        // Announce to screen readers
-                        const isSpanish = state.language === 'es';
-                        const message = isSpanish ? 
-                            'Saltó al contenido principal' : 
-                            'Skipped to main content';
-                        utils.announce(message);
-                        
-                        // Remove tabindex after focus to restore normal tab order
-                        setTimeout(() => {
-                            target.removeAttribute('tabindex');
-                        }, 100);
-                    }
-                });
-                
-                // Make skip link more discoverable for testing
-                // Show skip link briefly on page load to indicate it exists
-                if (window.location.hash === '' || window.location.hash === '#') {
-                    setTimeout(() => {
-                        skipLink.style.top = '1rem';
-                        skipLink.style.background = 'var(--accent-color)';
-                        skipLink.style.transform = 'translateX(-50%) scale(1.05)';
-                        setTimeout(() => {
-                            skipLink.style.top = '-60px';
-                            skipLink.style.background = 'var(--primary-color)';
-                            skipLink.style.transform = 'translateX(-50%)';
-                        }, 2000);
-                    }, 1000);
-                }
-            }
         },
 
         enhanceTooltips() {

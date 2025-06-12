@@ -188,46 +188,6 @@ body {
     position: relative;
 }
 
-/* Skip Link for Screen Readers */
-.skip-link {
-    position: fixed;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--primary-color);
-    color: var(--text-inverse);
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    z-index: calc(var(--z-tooltip) + 100);
-    transition: all var(--transition-fast);
-    border-radius: 0.5rem;
-    border: 2px solid var(--primary-hover);
-    font-size: 0.875rem;
-    box-shadow: var(--shadow-xl);
-    white-space: nowrap;
-}
-
-.skip-link:focus,
-.skip-link:focus-visible {
-    top: 1rem;
-    outline: 3px solid var(--accent-color);
-    outline-offset: 2px;
-    transform: translateX(-50%) scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.skip-link:hover {
-    background: var(--primary-hover);
-    transform: translateX(-50%) translateY(-2px);
-}
-
-/* Main content focus styling for skip link */
-#main-content:focus {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
 /* Back to Top Button */
 .back-to-top {
     position: fixed;

@@ -92,13 +92,20 @@
             color: #0f0f0f;
         }
     </style>
+    
+    <script>
+        // Immediate language initialization to ensure Spanish is default
+        (function() {
+            // Check for saved language preference
+            var savedLang = localStorage.getItem('prismafolio-lang');
+            // Default to Spanish if no saved preference
+            var lang = savedLang || 'es';
+            // Set the lang attribute immediately
+            document.documentElement.setAttribute('lang', lang);
+        })();
+    </script>
 </head>
 <body>
-    <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="skip-link">
-        <span data-es="Saltar al contenido principal" data-en="Skip to main content">Saltar al contenido principal</span>
-    </a>
-
     <!-- Progress Bar -->
     <div class="progress-bar no-print" id="progressBar" role="progressbar" aria-label="Page scroll progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
     
@@ -120,12 +127,12 @@
                 <li><a href="#features" class="nav-link" data-es="Características" data-en="Features">Características</a></li>
                 <li><a href="#pricing" class="nav-link" data-es="Precios" data-en="Pricing">Precios</a></li>
                 <li>
-                    <button id="langToggle" class="btn btn-ghost" aria-label="Change language">
+                    <button id="langToggle" class="btn btn-ghost" aria-label="Cambiar a Inglés">
                         <span data-es="🇪🇸 ES" data-en="🇺🇸 EN">🇪🇸 ES</span>
                     </button>
                 </li>
                 <li>
-                    <button id="themeToggle" class="btn btn-ghost" aria-label="Toggle light mode">
+                    <button id="themeToggle" class="btn btn-ghost" aria-label="Cambiar a modo claro">
                         <i class="fas fa-moon" aria-hidden="true" style="display: none;"></i>
                         <i class="fas fa-sun" aria-hidden="true"></i>
                     </button>
@@ -175,7 +182,7 @@
                     <div class="tooltip-container inline-block">
                         <p class="text-body-large text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
                             <span data-es="La estrategia Blue Ocean busca crear una nueva categoría de valor donde la competencia es irrelevante." data-en="The Blue Ocean strategy seeks to create a new value category where competition is irrelevant.">La estrategia Blue Ocean busca crear una nueva categoría de valor donde la competencia es irrelevante.</span>
-                            <button class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="More information about Blue Ocean Strategy" tabindex="0">
+                            <button class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="Más información sobre la estrategia Blue Ocean" tabindex="0">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </p>
@@ -269,7 +276,7 @@
                         <div class="tooltip-container mb-6">
                             <p class="text-body text-gray-600 dark:text-gray-300">
                                 <span data-es="No solo estructura, sino que redacta textos estratégicos según tu objetivo" data-en="Not just structure, but writes strategic texts according to your objective">No solo estructura, sino que redacta textos estratégicos según tu objetivo</span>
-                                <button class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="More information about AI Narrative" tabindex="0">
+                                <button class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="Más información sobre la narrativa IA" tabindex="0">
                                     <i class="fas fa-question-circle"></i>
                                 </button>
                             </p>
@@ -420,7 +427,7 @@
                         <div class="tooltip-container mb-6">
                             <p class="text-body text-gray-600 dark:text-gray-300">
                                 <span data-es="Prismafolio sugiere cuándo actualizar tu portafolio por fechas clave, tendencias y noticias en tu sector" data-en="Prismafolio suggests when to update your portfolio based on key dates, trends and news in your sector">Prismafolio sugiere cuándo actualizar tu portafolio por fechas clave, tendencias y noticias en tu sector</span>
-                                <button class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="More information about intelligent updates" tabindex="0">
+                                <button class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="Más información sobre actualizaciones inteligentes" tabindex="0">
                                     <i class="fas fa-sync-alt animate-spin"></i>
                                 </button>
                             </p>
