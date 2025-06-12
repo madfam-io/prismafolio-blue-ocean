@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,8 +36,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#2952a3">
-    <meta name="theme-color" content="#2952a3">
+    <meta name="msapplication-TileColor" content="#7c8ff3">
+    <meta name="theme-color" content="#0a0a0a">
     
     <!-- DNS Prefetch & Preconnect -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -84,12 +84,12 @@
         body { 
             margin: 0; 
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #fff;
-            color: #0f0f0f;
-        }
-        [data-theme="dark"] body {
             background: #0a0a0a;
             color: #f7f7f7;
+        }
+        [data-theme="light"] body {
+            background: #fff;
+            color: #0f0f0f;
         }
     </style>
 </head>
@@ -120,9 +120,9 @@
                     </button>
                 </li>
                 <li>
-                    <button id="themeToggle" class="btn btn-ghost" aria-label="Toggle dark mode">
-                        <i class="fas fa-moon" aria-hidden="true"></i>
-                        <i class="fas fa-sun" aria-hidden="true" style="display: none;"></i>
+                    <button id="themeToggle" class="btn btn-ghost" aria-label="Toggle light mode">
+                        <i class="fas fa-moon" aria-hidden="true" style="display: none;"></i>
+                        <i class="fas fa-sun" aria-hidden="true"></i>
                     </button>
                 </li>
             </ul>
@@ -136,22 +136,23 @@
             <div class="container text-center">
                 <div class="max-w-4xl mx-auto" style="position: relative; z-index: 10; color: white;">
                     <div class="animate-float">
-                        <h1 class="text-hero" style="margin-bottom: 1.5rem;">
-                        <span data-es="💠 Prismafolio" data-en="💠 Prismafolio">💠 Prismafolio</span>
-                    </h1>
-                    <p class="text-body-large" style="margin-bottom: 2rem; opacity: 0.9; max-width: 48rem; margin-left: auto; margin-right: auto;">
-                        <span data-es="Tu universo profesional, diseñado con inteligencia. Sin fricción. Sin límites." data-en="Your professional universe, designed with intelligence. Frictionless. Limitless.">Tu universo profesional, diseñado con inteligencia. Sin fricción. Sin límites.</span>
-                    </p>
-                </div>
-                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap;">
-                    <button class="btn btn-primary" style="font-size: 1.125rem; padding: 1rem 2rem;">
-                        <i class="fas fa-rocket" aria-hidden="true"></i>
-                        <span data-es="Comenzar Gratis" data-en="Start Free">Comenzar Gratis</span>
-                    </button>
-                    <button class="btn" style="font-size: 1.125rem; padding: 1rem 2rem; background: transparent; border-color: white; color: white;">
-                        <i class="fas fa-play-circle" aria-hidden="true"></i>
-                        <span data-es="Ver Demo" data-en="Watch Demo">Ver Demo</span>
-                    </button>
+                        <h1 class="text-hero mb-6">
+                            <span data-es="💠 Prismafolio" data-en="💠 Prismafolio">💠 Prismafolio</span>
+                        </h1>
+                        <p class="text-body-large mb-8" style="opacity: 0.95; max-width: 42rem; margin-left: auto; margin-right: auto;">
+                            <span data-es="Tu universo profesional, diseñado con inteligencia. Sin fricción. Sin límites." data-en="Your professional universe, designed with intelligence. Frictionless. Limitless.">Tu universo profesional, diseñado con inteligencia. Sin fricción. Sin límites.</span>
+                        </p>
+                    </div>
+                    <div class="flex gap-4 justify-center flex-wrap mt-16">
+                        <button class="btn btn-primary" style="font-size: 1.125rem; padding: 1rem 2.5rem; box-shadow: 0 4px 20px rgba(255,255,255,0.2);">
+                            <i class="fas fa-rocket" aria-hidden="true"></i>
+                            <span data-es="Comenzar Gratis" data-en="Start Free">Comenzar Gratis</span>
+                        </button>
+                        <button class="btn" style="font-size: 1.125rem; padding: 1rem 2.5rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-color: rgba(255,255,255,0.3); color: white;">
+                            <i class="fas fa-play-circle" aria-hidden="true"></i>
+                            <span data-es="Ver Demo" data-en="Watch Demo">Ver Demo</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="animate-bounce-slow" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white;" aria-hidden="true">
@@ -162,8 +163,8 @@
         <!-- Blue Ocean Strategy Section -->
         <section id="strategy" class="section" style="background-color: var(--bg-secondary);">
             <div class="container">
-                <div class="text-center mb-16">
-                    <h2 class="text-display mb-6">
+                <div class="text-center" style="margin-bottom: var(--spacing-3xl);">
+                    <h2 class="text-display" style="margin-bottom: var(--spacing-lg);">
                         <span data-es="🧠 ¿Qué es una estrategia 'Blue Ocean'?" data-en="🧠 What is a 'Blue Ocean' strategy?">🧠 ¿Qué es una estrategia "Blue Ocean"?</span>
                     </h2>
                     <div class="tooltip-container inline-block">
@@ -179,8 +180,8 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" style="align-items: center;">
-                    <div class="space-y-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2" style="gap: var(--spacing-lg); align-items: center;">
+                    <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
                         <div class="card bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
                             <div class="flex items-center space-x-4">
                                 <div class="text-red-500 text-3xl" role="img" aria-label="Before state">❌</div>
@@ -196,8 +197,8 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-center justify-center">
-                            <div class="p-4 bg-indigo-100 dark:bg-indigo-900 rounded-full">
+                        <div class="flex items-center justify-center" style="padding: var(--spacing-sm) 0;">
+                            <div style="padding: var(--spacing-md); background: var(--bg-tertiary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                                 <i class="fas fa-arrow-down text-indigo-600 text-2xl animate-pulse-slow"></i>
                             </div>
                         </div>
@@ -254,8 +255,8 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Feature 1 -->
                     <article class="feature-card card">
-                        <header class="flex items-center mb-6">
-                            <span class="text-4xl mr-4" role="img" aria-label="DNA icon">🧬</span>
+                        <header>
+                            <span class="text-3xl" role="img" aria-label="DNA icon">🧬</span>
                             <h3 class="text-headline">
                                 <span data-es="Narrativa IA con enfoque en posicionamiento" data-en="AI Narrative with positioning focus">Narrativa IA con enfoque en posicionamiento</span>
                             </h3>
@@ -293,8 +294,8 @@
 
                     <!-- Feature 2 -->
                     <article class="feature-card card">
-                        <header class="flex items-center mb-6">
-                            <span class="text-4xl mr-4" role="img" aria-label="Testing tube">🧪</span>
+                        <header>
+                            <span class="text-3xl" role="img" aria-label="Testing tube">🧪</span>
                             <h3 class="text-headline">
                                 <span data-es="Testing de Percepción Profesional" data-en="Professional Perception Testing">Testing de Percepción Profesional</span>
                             </h3>
@@ -315,8 +316,8 @@
 
                     <!-- Feature 3 -->
                     <article class="feature-card card">
-                        <header class="flex items-center mb-6">
-                            <span class="text-4xl mr-4" role="img" aria-label="Chart">📊</span>
+                        <header>
+                            <span class="text-3xl" role="img" aria-label="Chart">📊</span>
                             <h3 class="text-headline">
                                 <span data-es="Inteligencia de Posicionamiento (Posicionómetro)" data-en="Positioning Intelligence (Posicionómetro)">Inteligencia de Posicionamiento (Posicionómetro)</span>
                             </h3>
@@ -357,8 +358,8 @@
 
                     <!-- Feature 4 -->
                     <article class="feature-card card">
-                        <header class="flex items-center mb-6">
-                            <span class="text-4xl mr-4" role="img" aria-label="Theater masks">🎭</span>
+                        <header>
+                            <span class="text-3xl" role="img" aria-label="Theater masks">🎭</span>
                             <h3 class="text-headline">
                                 <span data-es="Galería de Avatares Profesionales" data-en="Professional Avatars Gallery">Galería de Avatares Profesionales</span>
                             </h3>
@@ -405,8 +406,8 @@
 
                     <!-- Feature 5 -->
                     <article class="feature-card card">
-                        <header class="flex items-center mb-6">
-                            <span class="text-4xl mr-4" role="img" aria-label="Refresh">🔄</span>
+                        <header>
+                            <span class="text-3xl" role="img" aria-label="Refresh">🔄</span>
                             <h3 class="text-headline">
                                 <span data-es="Actualización Inteligente Continua" data-en="Continuous Intelligent Updates">Actualización Inteligente Continua</span>
                             </h3>
@@ -442,8 +443,8 @@
 
                     <!-- Feature 6 -->
                     <article class="feature-card card">
-                        <header class="flex items-center mb-6">
-                            <span class="text-4xl mr-4" role="img" aria-label="Books">📚</span>
+                        <header>
+                            <span class="text-3xl" role="img" aria-label="Books">📚</span>
                             <h3 class="text-headline">
                                 <span data-es="Banco de Conocimiento Profesional" data-en="Professional Knowledge Bank">Banco de Conocimiento Profesional</span>
                             </h3>
@@ -481,8 +482,8 @@
 
                     <!-- Feature 7 -->
                     <article class="feature-card card lg:col-span-2">
-                        <header class="flex items-center mb-6">
-                            <span class="text-4xl mr-4" role="img" aria-label="Handshake">🤝</span>
+                        <header>
+                            <span class="text-3xl" role="img" aria-label="Handshake">🤝</span>
                             <h3 class="text-headline">
                                 <span data-es="Prismafolio x Comunidad" data-en="Prismafolio x Community">Prismafolio x Comunidad</span>
                             </h3>
@@ -527,8 +528,8 @@
         <!-- Pricing Section -->
         <section id="pricing" class="section" style="background-color: var(--bg-secondary);">
             <div class="container">
-                <div class="text-center mb-16">
-                    <h2 class="text-display mb-6">
+                <div class="text-center" style="margin-bottom: var(--spacing-3xl);">
+                    <h2 class="text-display" style="margin-bottom: var(--spacing-lg);">
                         <span data-es="🧾 Modelo de Ingresos" data-en="🧾 Revenue Model">🧾 Modelo de Ingresos</span>
                     </h2>
                     <p class="text-body-large text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -536,28 +537,28 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="gap: var(--spacing-lg);">
                     <!-- Free Plan -->
                     <div class="pricing-card card">
-                        <div class="text-center mb-8">
-                            <h3 class="text-2xl font-bold mb-4">
+                        <div class="text-center" style="margin-bottom: var(--spacing-lg);">
+                            <h3 class="text-2xl font-bold" style="margin-bottom: var(--spacing-md);">
                                 <span data-es="Free Forever" data-en="Free Forever">Free Forever</span>
                             </h3>
-                            <div class="text-5xl font-bold text-gray-900 dark:text-white mb-2">$0</div>
+                            <div class="text-5xl font-bold text-gray-900 dark:text-white" style="margin-bottom: var(--spacing-xs);">$0</div>
                             <div class="text-gray-500">
                                 <span data-es="/mes" data-en="/month">/mes</span>
                             </div>
                         </div>
-                        <ul class="space-y-4 mb-8" role="list">
-                            <li class="flex items-center">
+                        <ul style="margin-bottom: var(--spacing-lg);" role="list">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Editor IA básico" data-en="Basic AI editor">Editor IA básico</span>
                             </li>
-                            <li class="flex items-center">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Dominio .page" data-en=".page domain">Dominio .page</span>
                             </li>
-                            <li class="flex items-center">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Publicación limitada" data-en="Limited publishing">Publicación limitada</span>
                             </li>
@@ -569,23 +570,23 @@
 
                     <!-- Creator Pro Plan -->
                     <div class="pricing-card card featured border-indigo-500" data-badge="Popular">
-                        <div class="text-center mb-8">
-                            <h3 class="text-2xl font-bold mb-4">Creator Pro</h3>
-                            <div class="text-5xl font-bold text-indigo-600 mb-2">$5.99</div>
+                        <div class="text-center" style="margin-bottom: var(--spacing-lg);">
+                            <h3 class="text-2xl font-bold" style="margin-bottom: var(--spacing-md);">Creator Pro</h3>
+                            <div class="text-5xl font-bold text-indigo-600" style="margin-bottom: var(--spacing-xs);">$5.99</div>
                             <div class="text-gray-500">
                                 <span data-es="/mes" data-en="/month">/mes</span>
                             </div>
                         </div>
-                        <ul class="space-y-4 mb-8" role="list">
-                            <li class="flex items-center">
+                        <ul style="margin-bottom: var(--spacing-lg);" role="list">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="IA avanzada" data-en="Advanced AI">IA avanzada</span>
                             </li>
-                            <li class="flex items-center">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Perception Score" data-en="Perception Score">Perception Score</span>
                             </li>
-                            <li class="flex items-center">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Plantillas por sector" data-en="Industry templates">Plantillas por sector</span>
                             </li>
@@ -597,23 +598,23 @@
 
                     <!-- Positioning+ Plan -->
                     <div class="pricing-card card">
-                        <div class="text-center mb-8">
-                            <h3 class="text-2xl font-bold mb-4">Positioning+</h3>
-                            <div class="text-5xl font-bold text-purple-600 mb-2">$12.99</div>
+                        <div class="text-center" style="margin-bottom: var(--spacing-lg);">
+                            <h3 class="text-2xl font-bold" style="margin-bottom: var(--spacing-md);">Positioning+</h3>
+                            <div class="text-5xl font-bold text-purple-600" style="margin-bottom: var(--spacing-xs);">$12.99</div>
                             <div class="text-gray-500">
                                 <span data-es="/mes" data-en="/month">/mes</span>
                             </div>
                         </div>
-                        <ul class="space-y-4 mb-8" role="list">
-                            <li class="flex items-center">
+                        <ul style="margin-bottom: var(--spacing-lg);" role="list">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Todas las features" data-en="All features">Todas las features</span>
                             </li>
-                            <li class="flex items-center">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Tests de percepción" data-en="Perception tests">Tests de percepción</span>
                             </li>
-                            <li class="flex items-center">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Avatares Profesionales" data-en="Professional Avatars">Avatares Profesionales</span>
                             </li>
@@ -625,27 +626,27 @@
 
                     <!-- Elite Plan -->
                     <div class="pricing-card bg-gradient-to-br from-yellow-400 to-orange-500 text-white border-transparent">
-                        <div class="text-center mb-8">
-                            <h3 class="text-2xl font-bold mb-4">Prismafolio Elite</h3>
-                            <div class="text-5xl font-bold mb-2">$99</div>
+                        <div class="text-center" style="margin-bottom: var(--spacing-lg);">
+                            <h3 class="text-2xl font-bold" style="margin-bottom: var(--spacing-md);">Prismafolio Elite</h3>
+                            <div class="text-5xl font-bold" style="margin-bottom: var(--spacing-xs);">$99</div>
                             <div class="text-yellow-100">
                                 <span data-es="una sola vez" data-en="one time">una sola vez</span>
                             </div>
                         </div>
-                        <ul class="space-y-4 mb-8" role="list">
-                            <li class="flex items-center">
+                        <ul style="margin-bottom: var(--spacing-lg);" role="list">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-white mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Dominio personalizado" data-en="Custom domain">Dominio personalizado</span>
                             </li>
-                            <li class="flex items-center">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-white mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Branding avanzado" data-en="Advanced branding">Branding avanzado</span>
                             </li>
-                            <li class="flex items-center">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-white mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Soporte 1:1" data-en="1:1 support">Soporte 1:1</span>
                             </li>
-                            <li class="flex items-center">
+                            <li class="flex items-center" style="margin-bottom: var(--spacing-md);">
                                 <i class="fas fa-check text-white mr-3 flex-shrink-0" aria-hidden="true"></i>
                                 <span data-es="Edición colaborativa" data-en="Collaborative editing">Edición colaborativa</span>
                             </li>
@@ -656,8 +657,8 @@
                     </div>
                 </div>
 
-                <div class="text-center mt-16">
-                    <p class="text-body-large text-gray-600 dark:text-gray-300 mb-6">
+                <div class="text-center" style="margin-top: var(--spacing-3xl);">
+                    <p class="text-body-large text-gray-600 dark:text-gray-300" style="margin-bottom: var(--spacing-lg);">
                         <span data-es="💡 Planes anuales con 20% de descuento" data-en="💡 Annual plans with 20% discount">💡 Planes anuales con 20% de descuento</span>
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-body">
@@ -679,13 +680,13 @@
         <!-- Brand Positioning Section -->
         <section class="section">
             <div class="container">
-                <div class="text-center mb-16">
-                    <h2 class="text-display mb-6">
+                <div class="text-center" style="margin-bottom: var(--spacing-3xl);">
+                    <h2 class="text-display" style="margin-bottom: var(--spacing-lg);">
                         <span data-es="🗺️ Posicionamiento Narrativo Final" data-en="🗺️ Final Narrative Positioning">🗺️ Posicionamiento Narrativo Final</span>
                     </h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" style="margin-bottom: 4rem;">
+                <div class="grid grid-cols-1 md:grid-cols-3" style="gap: var(--spacing-lg); margin-bottom: var(--spacing-2xl);">
                     <article class="card text-center">
                         <div class="text-5xl mb-6" role="img" aria-label="Sparkles">✨</div>
                         <h3 class="text-headline mb-6">
@@ -729,14 +730,14 @@
                 </div>
 
                 <div class="text-center">
-                    <div class="max-w-4xl mx-auto card gradient-bg text-white p-12">
-                        <h3 class="text-display mb-8">
+                    <div class="max-w-4xl mx-auto card gradient-bg text-white" style="padding: var(--spacing-3xl);">
+                        <h3 class="text-display" style="margin-bottom: var(--spacing-lg);">
                             <span data-es="🏁 Conclusión" data-en="🏁 Conclusion">🏁 Conclusión</span>
                         </h3>
-                        <p class="text-body-large mb-6 opacity-90">
+                        <p class="text-body-large opacity-90" style="margin-bottom: var(--spacing-lg);">
                             <span data-es="Prismafolio no es el siguiente Webflow." data-en="Prismafolio is not the next Webflow.">Prismafolio no es el siguiente Webflow.</span>
                         </p>
-                        <p class="text-headline font-bold mb-8">
+                        <p class="text-headline font-bold" style="margin-bottom: var(--spacing-lg);">
                             <span data-es="Es el primer Prismafolio." data-en="It's the first Prismafolio.">Es el primer Prismafolio.</span>
                         </p>
                         <p class="text-body-large opacity-90 leading-relaxed">
@@ -749,14 +750,14 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16" role="contentinfo">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="bg-gray-900 text-white" style="padding: var(--spacing-3xl) 0;" role="contentinfo">
+        <div class="max-w-7xl mx-auto" style="padding: 0 var(--spacing-md);">
             <div class="text-center">
-                <div class="text-4xl font-bold mb-6 gradient-text">💠 Prismafolio</div>
-                <p class="text-body-large text-gray-400 mb-8 max-w-2xl mx-auto">
+                <div class="text-4xl font-bold gradient-text" style="margin-bottom: var(--spacing-lg);">💠 Prismafolio</div>
+                <p class="text-body-large text-gray-400 max-w-2xl mx-auto" style="margin-bottom: var(--spacing-lg);">
                     <span data-es="Tu universo profesional, diseñado con inteligencia" data-en="Your professional universe, designed with intelligence">Tu universo profesional, diseñado con inteligencia</span>
                 </p>
-                <div class="flex justify-center space-x-8 mb-8" role="list" aria-label="Social media links">
+                <div class="flex justify-center" style="gap: var(--spacing-lg); margin-bottom: var(--spacing-lg);" role="list" aria-label="Social media links">
                     <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl" aria-label="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a>
@@ -770,7 +771,7 @@
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
-                <div class="border-t border-gray-800 pt-8">
+                <div class="border-t border-gray-800" style="padding-top: var(--spacing-lg);">
                     <p class="text-caption text-gray-400">
                         &copy; 2024 Prismafolio. 
                         <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span>

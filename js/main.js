@@ -6,7 +6,7 @@
 
     // Configuration
     const config = {
-        defaultTheme: 'light',
+        defaultTheme: 'dark',
         defaultLang: 'es',
         scrollThreshold: 100,
         animationDuration: 300,
