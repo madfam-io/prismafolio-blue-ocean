@@ -190,21 +190,40 @@ body {
 
 /* Skip Link for Screen Readers */
 .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
+    position: fixed;
+    top: -50px;
+    left: 1rem;
     background: var(--primary-color);
     color: var(--text-inverse);
     padding: 0.75rem 1.5rem;
     text-decoration: none;
     font-weight: 600;
     z-index: var(--z-tooltip);
-    transition: top var(--transition-fast);
-    border-radius: 0 0 0.5rem 0;
+    transition: all var(--transition-fast);
+    border-radius: 0 0 0.5rem 0.5rem;
+    border: 2px solid var(--primary-hover);
+    font-size: 0.875rem;
+    box-shadow: var(--shadow-lg);
+    white-space: nowrap;
 }
 
-.skip-link:focus {
-    top: 0;
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 1rem;
+    outline: none;
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
+}
+
+.skip-link:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* Main content focus styling for skip link */
+#main-content:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 /* Typography System */

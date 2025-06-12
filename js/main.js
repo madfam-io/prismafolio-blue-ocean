@@ -378,8 +378,33 @@
                         target.setAttribute('tabindex', '-1');
                         target.focus();
                         scrollManager.smoothScroll(target);
+                        
+                        // Announce to screen readers
+                        const isSpanish = state.language === 'es';
+                        const message = isSpanish ? 
+                            'Saltó al contenido principal' : 
+                            'Skipped to main content';
+                        utils.announce(message);
+                        
+                        // Remove tabindex after focus to restore normal tab order
+                        setTimeout(() => {
+                            target.removeAttribute('tabindex');
+                        }, 100);
                     }
                 });
+                
+                // Make skip link more discoverable for testing
+                // Show skip link briefly on page load to indicate it exists
+                if (window.location.hash === '' || window.location.hash === '#') {
+                    setTimeout(() => {
+                        skipLink.style.top = '1rem';
+                        skipLink.style.background = 'var(--accent-color)';
+                        setTimeout(() => {
+                            skipLink.style.top = '-50px';
+                            skipLink.style.background = 'var(--primary-color)';
+                        }, 2000);
+                    }, 1000);
+                }
             }
         },
 
