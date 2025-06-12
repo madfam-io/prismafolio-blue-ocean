@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Página no encontrada | Prismafolio</title>
+    <meta name="description" content="La página que buscas no existe. Regresa al inicio de Prismafolio.">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body { 
+            margin: 0; 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fff;
+            color: #0f0f0f;
+        }
+        [data-theme="dark"] body {
+            background: #0a0a0a;
+            color: #f7f7f7;
+        }
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #2952a3, #5f3dc4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            line-height: 1;
+        }
+        .error-message {
+            font-size: 1.5rem;
+            margin: 1rem 0 2rem;
+            color: var(--text-secondary);
+        }
+        .error-description {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: var(--text-tertiary);
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div>
+            <h1 class="error-code">404</h1>
+            <h2 class="error-message">Página no encontrada</h2>
+            <p class="error-description">
+                Parece que te has perdido en el universo digital. La página que buscas no existe o ha sido movida.
+            </p>
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-home" style="margin-right: 0.5rem;"></i>
+                Volver al inicio
+            </a>
+        </div>
+    </div>
+    <script>
+        // Apply saved theme
+        const savedTheme = localStorage.getItem('prismafolio-theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>

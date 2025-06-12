@@ -1,0 +1,8 @@
+# Prismafolio robots.txt
+# Allow all bots to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://prismafolio.github.io/sitemap.xml
