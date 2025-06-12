@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prismafolio - Tu Universo Profesional con Inteligencia</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Enhanced CSS Variables for 100/100 Accessibility */
+        :root {
+            /* Light Theme - WCAG AAA Compliant Colors */
+            --primary-color: #4338ca;
+            --primary-hover: #3730a3;
+            --primary-active: #312e81;
+            --secondary-color: #7c3aed;
+            --secondary-hover: #6d28d9;
+            --accent-color: #0891b2;
+            --accent-hover: #0e7490;
+            
+            /* Text Colors - AAA Contrast */
+            --text-primary: #111827;
+            --text-secondary: #374151;
+            --text-tertiary: #6b7280;
+            --text-inverse: #ffffff;
+            --text-link: #1d4ed8;
+            --text-link-hover: #1e40af;
+            
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-tertiary: #f3f4f6;
+            --bg-elevated: #ffffff;
+            --bg-overlay: rgba(0, 0, 0, 0.75);
+            
+            /* Border Colors */
+            --border-primary: #d1d5db;
+            --border-secondary: #e5e7eb;
+            --border-focus: #2563eb;
+            
+            /* Status Colors - AAA Compliant */
+            --success-color: #059669;
+            --success-bg: #d1fae5;
+            --warning-color: #d97706;
+            --warning-bg: #fef3c7;
+            --error-color: #dc2626;
+            --error-bg: #fee2e2;
+            
+            /* Shadow System */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Focus Ring */
+            --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            --focus-ring-offset: 2px;
+        }
+
+        /* Dark Theme - WCAG AAA Compliant Colors */
+        [data-theme="dark"] {
+            --primary-color: #6366f1;
+            --primary-hover: #7c3aed;
+            --primary-active: #8b5cf6;
+            --secondary-color: #a855f7;
+            --secondary-hover: #9333ea;
+            --accent-color: #06b6d4;
+            --accent-hover: #0891b2;
+            
+            /* Text Colors - AAA Contrast for Dark */
+            --text-primary: #f9fafb;
+            --text-secondary: #e5e7eb;
+            --text-tertiary: #d1d5db;
+            --text-inverse: #111827;
+            --text-link: #60a5fa;
+            --text-link-hover: #93c5fd;
+            
+            /* Background Colors */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-elevated: #1e293b;
+            --bg-overlay: rgba(0, 0, 0, 0.9);
+            
+            /* Border Colors */
+            --border-primary: #475569;
+            --border-secondary: #334155;
+            --border-focus: #3b82f6;
+            
+            /* Status Colors for Dark */
+            --success-color: #10b981;
+            --success-bg: #064e3b;
+            --warning-color: #f59e0b;
+            --warning-bg: #451a03;
+            --error-color: #ef4444;
+            --error-bg: #7f1d1d;
+        }
+
+        /* Enhanced Typography System */
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Enhanced Focus Management */
+        *:focus {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        .focus-visible {
+            box-shadow: var(--focus-ring);
+        }
+
+        /* Skip Link for Screen Readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            padding: 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Enhanced Button System */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-decoration: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 2px solid transparent;
+            min-height: 44px; /* WCAG AA touch target */
+            position: relative;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-inverse);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:active:not(:disabled) {
+            background-color: var(--primary-active);
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: var(--primary-color);
+            color: var(--text-inverse);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Enhanced Cards */
+        .card {
+            background-color: var(--bg-elevated);
+            border: 1px solid var(--border-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--border-primary);
+        }
+
+        /* Enhanced Tooltips */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            z-index: 1000;
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.4;
+            font-weight: 500;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-lg);
+            max-width: 280px;
+            white-space: normal;
+            word-wrap: break-word;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: var(--bg-elevated) transparent transparent transparent;
+        }
+
+        .tooltip-container:hover .tooltip,
+        .tooltip-container:focus-within .tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-4px);
+        }
+
+        /* Enhanced Navigation */
+        .nav-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 44px;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 1rem;
+            right: 1rem;
+            height: 2px;
+            background: var(--primary-color);
+            border-radius: 1px;
+            transform: scaleX(0);
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            transform: scaleX(1);
+        }
+
+        /* Glassmorphism Effect */
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] .glassmorphism {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Enhanced Gradients */
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Enhanced Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes bounce-slow {
+            0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+            40%, 43% { transform: translateY(-8px); }
+            70% { transform: translateY(-4px); }
+            90% { transform: translateY(-2px); }
+        }
+
+        @keyframes slide-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite;
+        }
+
+        .animate-bounce-slow {
+            animation: bounce-slow 2s infinite;
+        }
+
+        .animate-in {
+            animation: slide-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Enhanced Pricing Cards */
+        .pricing-card {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            border-width: 2px;
+        }
+
+        .pricing-card.featured::before {
+            content: attr(data-badge);
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Enhanced Progress Bars */
+        .progress-bar {
+            height: 4px;
+            background: var(--primary-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .progress-indicator {
+            width: 100%;
+            height: 0.5rem;
+            background-color: var(--bg-secondary);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 9999px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Enhanced Feature Cards */
+        .feature-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        /* Enhanced Section Dividers */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-primary), transparent);
+            margin: 4rem 0;
+        }
+
+        /* Enhanced Typography Scale */
+        .text-hero {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .text-display {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .text-headline {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .text-body-large {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .text-body {
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .text-caption {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            font-weight: 400;
+            color: var(--text-tertiary);
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #000080;
+                --text-primary: #000000;
+                --text-secondary: #000000;
+                --bg-primary: #ffffff;
+                --border-primary: #000000;
+            }
+
+            [data-theme="dark"] {
+                --primary-color: #87ceeb;
+                --text-primary: #ffffff;
+                --text-secondary: #ffffff;
+                --bg-primary: #000000;
+                --border-primary: #ffffff;
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .animate-float,
+            .animate-pulse-slow,
+            .animate-bounce-slow {
+                animation: none;
+            }
+        }
+
+        /* Print Styles */
+         {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .card {
+                border: 1px solid #000 !important;
+                box-shadow: none !important;
+            }
+
+            .gradient-bg {
+                background: #f0f0f0 !important;
+                color: #000 !important;
+            }
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .tooltip {
+                position: fixed;
+                top: auto;
+                bottom: 1rem;
+                left: 1rem;
+                right: 1rem;
+                transform: none;
+                max-width: none;
+            }
+
+            .tooltip::after {
+                display: none;
+            }
+
+            .nav-link {
+                min-height: 48px; /* Larger touch targets on mobile */
+            }
+
+            .btn {
+                min-height: 48px;
+            }
+        }
+
+        /* Keyboard Navigation Styles */
+        .keyboard-navigation *:focus {
+            box-shadow: var(--focus-ring) !important;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-tertiary);
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">
+        <span data-es="Saltar al contenido principal" data-en="Skip to main content">Saltar al contenido principal</span>
+    </a>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar no-print" id="progressBar" role="progressbar" aria-label="Page scroll progress"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glassmorphism no-print" role="navigation" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold gradient-text" role="img" aria-label="Prismafolio logo">💠 Prismafolio</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-2">
+                    <a href="#hero" class="nav-link" data-es="Inicio" data-en="Home">Inicio</a>
+                    <a href="#strategy" class="nav-link" data-es="Estrategia" data-en="Strategy">Estrategia</a>
+                    <a href="#features" class="nav-link" data-es="Características" data-en="Features">Características</a>
+                    <a href="#pricing" class="nav-link" data-es="Precios" data-en="Pricing">Precios</a>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button id="langToggle" class="btn btn-secondary text-sm" aria-label="Change language">
+                        <span data-es="🇪🇸 ES" data-en="🇺🇸 EN">🇪🇸 ES</span>
+                    </button>
+                    <button id="themeToggle" class="btn btn-secondary p-2" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon dark:hidden" aria-hidden="true"></i>
+                        <i class="fas fa-sun hidden dark:inline" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center gradient-bg overflow-hidden" role="banner">
+            <div class="absolute inset-0 bg-black bg-opacity-20" aria-hidden="true"></div>
+            <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+                <div class="animate-float">
+                    <h1 class="text-hero mb-6">
+                        <span data-es="💠 Prismafolio" data-en="💠 Prismafolio">💠 Prismafolio</span>
+                    </h1>
+                    <p class="text-body-large mb-8 opacity-90 max-w-3xl mx-auto">
+                        <span data-es="Tu universo profesional, diseñado con inteligencia. Sin fricción. Sin límites." data-en="Your professional universe, designed with intelligence. Frictionless. Limitless.">Tu universo profesional, diseñado con inteligencia. Sin fricción. Sin límites.</span>
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+                    <button class="btn btn-primary text-lg px-8 py-4">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        <span data-es="Comenzar Gratis" data-en="Start Free">Comenzar Gratis</span>
+                    </button>
+                    <button class="btn btn-secondary text-lg px-8 py-4 bg-transparent border-white text-white hover:bg-white hover:text-indigo-600">
+                        <i class="fas fa-play-circle" aria-hidden="true"></i>
+                        <span data-es="Ver Demo" data-en="Watch Demo">Ver Demo</span>
+                    </button>
+                </div>
+            </div>
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-white" aria-hidden="true">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+        </section>
+
+        <!-- Blue Ocean Strategy Section -->
+        <section id="strategy" class="py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-display mb-6">
+                        <span data-es="🧠 ¿Qué es una estrategia 'Blue Ocean'?" data-en="🧠 What is a 'Blue Ocean' strategy?">🧠 ¿Qué es una estrategia "Blue Ocean"?</span>
+                    </h2>
+                    <div class="tooltip-container inline-block">
+                        <p class="text-body-large text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
+                            <span data-es="La estrategia Blue Ocean busca crear una nueva categoría de valor donde la competencia es irrelevante." data-en="The Blue Ocean strategy seeks to create a new value category where competition is irrelevant.">La estrategia Blue Ocean busca crear una nueva categoría de valor donde la competencia es irrelevante.</span>
+                            <button class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="More information about Blue Ocean Strategy" tabindex="0">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </p>
+                        <div class="tooltip" role="tooltip">
+                            <span data-es="Blue Ocean Strategy es un concepto de negocio que propone crear mercados completamente nuevos en lugar de competir en mercados existentes saturados." data-en="Blue Ocean Strategy is a business concept that proposes creating completely new markets instead of competing in existing saturated markets.">Blue Ocean Strategy es un concepto de negocio que propone crear mercados completamente nuevos en lugar de competir en mercados existentes saturados.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="card bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-red-500 text-3xl" role="img" aria-label="Before state">❌</div>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-lg mb-3">
+                                        <span data-es="De currículum disperso" data-en="From scattered resume">De currículum disperso</span>
+                                    </h3>
+                                    <div class="progress-indicator">
+                                        <div class="progress-fill bg-red-500" style="width: 30%"></div>
+                                    </div>
+                                    <span class="text-caption mt-1 block">30% efectividad</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-center">
+                            <div class="p-4 bg-indigo-100 dark:bg-indigo-900 rounded-full">
+                                <i class="fas fa-arrow-down text-indigo-600 text-2xl animate-pulse-slow"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-green-500 text-3xl" role="img" aria-label="After state">✅</div>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-lg mb-3">
+                                        <span data-es="A narrativa de marca personal en minutos" data-en="To personal brand narrative in minutes">A narrativa de marca personal en minutos</span>
+                                    </h3>
+                                    <div class="progress-indicator">
+                                        <div class="progress-fill bg-green-500" style="width: 90%"></div>
+                                    </div>
+                                    <span class="text-caption mt-1 block">90% efectividad</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="card glassmorphism text-center">
+                            <h3 class="text-headline mb-4">
+                                <span data-es="🌊 NUEVA CATEGORÍA" data-en="🌊 NEW CATEGORY">🌊 NUEVA CATEGORÍA</span>
+                            </h3>
+                            <p class="text-body-large mb-6 font-semibold">
+                                <span data-es="Asistente de Posicionamiento Profesional Autónomo" data-en="Autonomous Professional Positioning Assistant">Asistente de Posicionamiento Profesional Autónomo</span>
+                            </p>
+                            <div class="p-6 bg-indigo-100 dark:bg-indigo-900 rounded-xl">
+                                <p class="font-semibold text-lg mb-2">
+                                    <span data-es="✨ Prismafolio no construye portafolios." data-en="✨ Prismafolio doesn't build portfolios.">✨ Prismafolio no construye portafolios.</span>
+                                </p>
+                                <p class="text-indigo-600 dark:text-indigo-400 font-bold text-xl">
+                                    <span data-es="Prismafolio construye el cómo quieres que te perciban." data-en="Prismafolio builds how you want to be perceived.">Prismafolio construye el cómo quieres que te perciban.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider max-w-7xl mx-auto"></div>
+
+        <!-- Unique Features Section -->
+        <section id="features" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-display mb-6">
+                        <span data-es="🔥 Elementos Únicos del Blue Ocean" data-en="🔥 Unique Blue Ocean Elements">🔥 Elementos Únicos del Blue Ocean</span>
+                    </h2>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Feature 1 -->
+                    <article class="feature-card card">
+                        <header class="flex items-center mb-6">
+                            <span class="text-4xl mr-4" role="img" aria-label="DNA icon">🧬</span>
+                            <h3 class="text-headline">
+                                <span data-es="Narrativa IA con enfoque en posicionamiento" data-en="AI Narrative with positioning focus">Narrativa IA con enfoque en posicionamiento</span>
+                            </h3>
+                        </header>
+                        <div class="tooltip-container mb-6">
+                            <p class="text-body text-gray-600 dark:text-gray-300">
+                                <span data-es="No solo estructura, sino que redacta textos estratégicos según tu objetivo" data-en="Not just structure, but writes strategic texts according to your objective">No solo estructura, sino que redacta textos estratégicos según tu objetivo</span>
+                                <button class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="More information about AI Narrative" tabindex="0">
+                                    <i class="fas fa-question-circle"></i>
+                                </button>
+                            </p>
+                            <div class="tooltip" role="tooltip">
+                                <span data-es="La IA analiza tu perfil y objetivos para crear contenido personalizado que resuene con tu audiencia específica." data-en="AI analyzes your profile and objectives to create personalized content that resonates with your specific audience.">La IA analiza tu perfil y objetivos para crear contenido personalizado que resuene con tu audiencia específica.</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="flex items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-green-500 mr-4 text-2xl" role="img" aria-label="Employment">💼</span>
+                                <span class="font-medium" data-es="Conseguir empleo" data-en="Get employment">Conseguir empleo</span>
+                            </div>
+                            <div class="flex items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-blue-500 mr-4 text-2xl" role="img" aria-label="Clients">🎯</span>
+                                <span class="font-medium" data-es="Atraer clientes" data-en="Attract clients">Atraer clientes</span>
+                            </div>
+                            <div class="flex items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-purple-500 mr-4 text-2xl" role="img" aria-label="Industry">⭐</span>
+                                <span class="font-medium" data-es="Destacar en mi industria" data-en="Stand out in my industry">Destacar en mi industria</span>
+                            </div>
+                            <div class="flex items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-orange-500 mr-4 text-2xl" role="img" aria-label="Funding">💰</span>
+                                <span class="font-medium" data-es="Solicitar fondos o becas" data-en="Apply for funds or scholarships">Solicitar fondos o becas</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Feature 2 -->
+                    <article class="feature-card card">
+                        <header class="flex items-center mb-6">
+                            <span class="text-4xl mr-4" role="img" aria-label="Testing tube">🧪</span>
+                            <h3 class="text-headline">
+                                <span data-es="Testing de Percepción Profesional" data-en="Professional Perception Testing">Testing de Percepción Profesional</span>
+                            </h3>
+                        </header>
+                        <p class="text-body text-gray-600 dark:text-gray-300 mb-6">
+                            <span data-es="Simula cómo percibirían tu portafolio diferentes tipos de visitantes" data-en="Simulates how different types of visitors would perceive your portfolio">Simula cómo percibirían tu portafolio diferentes tipos de visitantes</span>
+                        </p>
+                        <div class="mb-6">
+                            <canvas id="perceptionChart" style="height: 300px;" aria-label="Perception score chart showing ratings from different visitor types"></canvas>
+                        </div>
+                        <div class="text-center p-6 bg-indigo-50 dark:bg-indigo-900 rounded-lg">
+                            <div class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">85</div>
+                            <p class="text-body font-semibold text-indigo-600 dark:text-indigo-400">
+                                <span data-es="Perception Score" data-en="Perception Score">Perception Score</span>
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Feature 3 -->
+                    <article class="feature-card card">
+                        <header class="flex items-center mb-6">
+                            <span class="text-4xl mr-4" role="img" aria-label="Chart">📊</span>
+                            <h3 class="text-headline">
+                                <span data-es="Inteligencia de Posicionamiento (Posicionómetro)" data-en="Positioning Intelligence (Posicionómetro)">Inteligencia de Posicionamiento (Posicionómetro)</span>
+                            </h3>
+                        </header>
+                        <div class="space-y-6 mb-6">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium" data-es="Impacto Visual" data-en="Visual Impact">Impacto Visual</span>
+                                <div class="flex items-center space-x-3">
+                                    <div class="progress-indicator w-32">
+                                        <div class="progress-fill bg-green-500" style="width: 80%"></div>
+                                    </div>
+                                    <span class="text-caption font-semibold">80%</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium" data-es="Narrativa Personal" data-en="Personal Narrative">Narrativa Personal</span>
+                                <div class="flex items-center space-x-3">
+                                    <div class="progress-indicator w-32">
+                                        <div class="progress-fill bg-blue-500" style="width: 60%"></div>
+                                    </div>
+                                    <span class="text-caption font-semibold">60%</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium" data-es="Competitividad" data-en="Competitiveness">Competitividad</span>
+                                <div class="flex items-center space-x-3">
+                                    <div class="progress-indicator w-32">
+                                        <div class="progress-fill bg-purple-500" style="width: 85%"></div>
+                                    </div>
+                                    <span class="text-caption font-semibold">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <canvas id="competitorChart" style="height: 250px;" aria-label="Competitive positioning comparison chart"></canvas>
+                        </div>
+                    </article>
+
+                    <!-- Feature 4 -->
+                    <article class="feature-card card">
+                        <header class="flex items-center mb-6">
+                            <span class="text-4xl mr-4" role="img" aria-label="Theater masks">🎭</span>
+                            <h3 class="text-headline">
+                                <span data-es="Galería de Avatares Profesionales" data-en="Professional Avatars Gallery">Galería de Avatares Profesionales</span>
+                            </h3>
+                        </header>
+                        <p class="text-body text-gray-600 dark:text-gray-300 mb-6">
+                            <span data-es="Crea 'versiones alternas' de tu portafolio según el público objetivo" data-en="Create 'alternate versions' of your portfolio according to target audience">Crea "versiones alternas" de tu portafolio según el público objetivo</span>
+                        </p>
+                        <div class="space-y-4">
+                            <button class="w-full flex items-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all focus:border-indigo-500" aria-describedby="client-desc">
+                                <span class="text-3xl mr-4" role="img" aria-label="Person">👤</span>
+                                <div class="text-left">
+                                    <h4 class="font-semibold text-lg">
+                                        <span data-es="Cliente potencial" data-en="Potential client">Cliente potencial</span>
+                                    </h4>
+                                    <p class="text-caption" id="client-desc">
+                                        <span data-es="Lenguaje directo y portfolio comercial" data-en="Direct language and commercial portfolio">Lenguaje directo y portfolio comercial</span>
+                                    </p>
+                                </div>
+                            </button>
+                            <button class="w-full flex items-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all focus:border-indigo-500" aria-describedby="recruiter-desc">
+                                <span class="text-3xl mr-4" role="img" aria-label="Briefcase">💼</span>
+                                <div class="text-left">
+                                    <h4 class="font-semibold text-lg">
+                                        <span data-es="Reclutador" data-en="Recruiter">Reclutador</span>
+                                    </h4>
+                                    <p class="text-caption" id="recruiter-desc">
+                                        <span data-es="Lenguaje técnico, logros, stack" data-en="Technical language, achievements, stack">Lenguaje técnico, logros, stack</span>
+                                    </p>
+                                </div>
+                            </button>
+                            <button class="w-full flex items-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all focus:border-indigo-500" aria-describedby="academic-desc">
+                                <span class="text-3xl mr-4" role="img" aria-label="Graduation cap">🎓</span>
+                                <div class="text-left">
+                                    <h4 class="font-semibold text-lg">
+                                        <span data-es="Académico" data-en="Academic">Académico</span>
+                                    </h4>
+                                    <p class="text-caption" id="academic-desc">
+                                        <span data-es="Publicaciones, premios, certificaciones" data-en="Publications, awards, certifications">Publicaciones, premios, certificaciones</span>
+                                    </p>
+                                </div>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Feature 5 -->
+                    <article class="feature-card card">
+                        <header class="flex items-center mb-6">
+                            <span class="text-4xl mr-4" role="img" aria-label="Refresh">🔄</span>
+                            <h3 class="text-headline">
+                                <span data-es="Actualización Inteligente Continua" data-en="Continuous Intelligent Updates">Actualización Inteligente Continua</span>
+                            </h3>
+                        </header>
+                        <div class="tooltip-container mb-6">
+                            <p class="text-body text-gray-600 dark:text-gray-300">
+                                <span data-es="Prismafolio sugiere cuándo actualizar tu portafolio por fechas clave, tendencias y noticias en tu sector" data-en="Prismafolio suggests when to update your portfolio based on key dates, trends and news in your sector">Prismafolio sugiere cuándo actualizar tu portafolio por fechas clave, tendencias y noticias en tu sector</span>
+                                <button class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="More information about intelligent updates" tabindex="0">
+                                    <i class="fas fa-sync-alt animate-spin"></i>
+                                </button>
+                            </p>
+                            <div class="tooltip" role="tooltip">
+                                <span data-es="Sistema de IA que monitorea tu industria y te alerta sobre oportunidades de actualización relevantes." data-en="AI system that monitors your industry and alerts you about relevant update opportunities.">Sistema de IA que monitorea tu industria y te alerta sobre oportunidades de actualización relevantes.</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fab fa-linkedin mr-4 text-blue-600 text-xl" aria-hidden="true"></i>
+                                    <span class="font-medium" data-es="LinkedIn integrado" data-en="LinkedIn integrated">LinkedIn integrado</span>
+                                </div>
+                                <span class="text-green-600 font-bold text-xl" role="img" aria-label="Checkmark">✓</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fab fa-github mr-4 text-gray-800 dark:text-gray-300 text-xl" aria-hidden="true"></i>
+                                    <span class="font-medium" data-es="GitHub sincronizado" data-en="GitHub synchronized">GitHub sincronizado</span>
+                                </div>
+                                <span class="text-green-600 font-bold text-xl" role="img" aria-label="Checkmark">✓</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Feature 6 -->
+                    <article class="feature-card card">
+                        <header class="flex items-center mb-6">
+                            <span class="text-4xl mr-4" role="img" aria-label="Books">📚</span>
+                            <h3 class="text-headline">
+                                <span data-es="Banco de Conocimiento Profesional" data-en="Professional Knowledge Bank">Banco de Conocimiento Profesional</span>
+                            </h3>
+                        </header>
+                        <p class="text-body text-gray-600 dark:text-gray-300 mb-6">
+                            <span data-es="Accede a plantillas, tips y recomendaciones generadas por IA según tu sector" data-en="Access templates, tips and AI-generated recommendations according to your sector">Accede a plantillas, tips y recomendaciones generadas por IA según tu sector</span>
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-3xl block mb-3" role="img" aria-label="Templates">📝</span>
+                                <span class="text-body font-semibold">
+                                    <span data-es="Plantillas" data-en="Templates">Plantillas</span>
+                                </span>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-3xl block mb-3" role="img" aria-label="AI Tips">💡</span>
+                                <span class="text-body font-semibold">
+                                    <span data-es="Tips IA" data-en="AI Tips">Tips IA</span>
+                                </span>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-3xl block mb-3" role="img" aria-label="Interviews">🎯</span>
+                                <span class="text-body font-semibold">
+                                    <span data-es="Entrevistas" data-en="Interviews">Entrevistas</span>
+                                </span>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-3xl block mb-3" role="img" aria-label="Networking">🤝</span>
+                                <span class="text-body font-semibold">
+                                    <span data-es="Networking" data-en="Networking">Networking</span>
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Feature 7 -->
+                    <article class="feature-card card lg:col-span-2">
+                        <header class="flex items-center mb-6">
+                            <span class="text-4xl mr-4" role="img" aria-label="Handshake">🤝</span>
+                            <h3 class="text-headline">
+                                <span data-es="Prismafolio x Comunidad" data-en="Prismafolio x Community">Prismafolio x Comunidad</span>
+                            </h3>
+                        </header>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="font-semibold text-lg mb-4">
+                                    <span data-es="Colaboración Creativa" data-en="Creative Collaboration">Colaboración Creativa</span>
+                                </h4>
+                                <p class="text-body text-gray-600 dark:text-gray-300 mb-6">
+                                    <span data-es="Portafolios con modos de colaboración para equipos o dúos creativos" data-en="Portfolios with collaboration modes for creative teams or duos">Portafolios con modos de colaboración para equipos o dúos creativos</span>
+                                </p>
+                                <div class="flex -space-x-2" role="group" aria-label="Team avatars">
+                                    <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center text-white font-bold border-2 border-white dark:border-gray-800">A</div>
+                                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold border-2 border-white dark:border-gray-800">B</div>
+                                    <div class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold border-2 border-white dark:border-gray-800">C</div>
+                                    <div class="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold border-2 border-white dark:border-gray-800">+</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-4">
+                                    <span data-es="Portafolio Recomendado" data-en="Recommended Portfolio">Portafolio Recomendado</span>
+                                </h4>
+                                <p class="text-body text-gray-600 dark:text-gray-300 mb-6">
+                                    <span data-es="Ayuda a otros profesionales y gana exposición en la comunidad" data-en="Help other professionals and gain exposure in the community">Ayuda a otros profesionales y gana exposición en la comunidad</span>
+                                </p>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-yellow-500 text-xl" role="img" aria-label="Star">⭐</span>
+                                    <span class="text-body font-medium">
+                                        <span data-es="Sistema de reputación" data-en="Reputation system">Sistema de reputación</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider max-w-7xl mx-auto"></div>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-display mb-6">
+                        <span data-es="🧾 Modelo de Ingresos" data-en="🧾 Revenue Model">🧾 Modelo de Ingresos</span>
+                    </h2>
+                    <p class="text-body-large text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        <span data-es="Planes diseñados para cada etapa de tu crecimiento profesional" data-en="Plans designed for every stage of your professional growth">Planes diseñados para cada etapa de tu crecimiento profesional</span>
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-4 gap-8">
+                    <!-- Free Plan -->
+                    <div class="pricing-card card">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">
+                                <span data-es="Free Forever" data-en="Free Forever">Free Forever</span>
+                            </h3>
+                            <div class="text-5xl font-bold text-gray-900 dark:text-white mb-2">$0</div>
+                            <div class="text-gray-500">
+                                <span data-es="/mes" data-en="/month">/mes</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 mb-8" role="list">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Editor IA básico" data-en="Basic AI editor">Editor IA básico</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Dominio .page" data-en=".page domain">Dominio .page</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Publicación limitada" data-en="Limited publishing">Publicación limitada</span>
+                            </li>
+                        </ul>
+                        <button class="btn w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600">
+                            <span data-es="Comenzar Gratis" data-en="Start Free">Comenzar Gratis</span>
+                        </button>
+                    </div>
+
+                    <!-- Creator Pro Plan -->
+                    <div class="pricing-card card featured border-indigo-500" data-badge="Popular">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Creator Pro</h3>
+                            <div class="text-5xl font-bold text-indigo-600 mb-2">$5.99</div>
+                            <div class="text-gray-500">
+                                <span data-es="/mes" data-en="/month">/mes</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 mb-8" role="list">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="IA avanzada" data-en="Advanced AI">IA avanzada</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Perception Score" data-en="Perception Score">Perception Score</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Plantillas por sector" data-en="Industry templates">Plantillas por sector</span>
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary w-full">
+                            <span data-es="Comenzar Prueba" data-en="Start Trial">Comenzar Prueba</span>
+                        </button>
+                    </div>
+
+                    <!-- Positioning+ Plan -->
+                    <div class="pricing-card card">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Positioning+</h3>
+                            <div class="text-5xl font-bold text-purple-600 mb-2">$12.99</div>
+                            <div class="text-gray-500">
+                                <span data-es="/mes" data-en="/month">/mes</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 mb-8" role="list">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Todas las features" data-en="All features">Todas las features</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Tests de percepción" data-en="Perception tests">Tests de percepción</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Avatares Profesionales" data-en="Professional Avatars">Avatares Profesionales</span>
+                            </li>
+                        </ul>
+                        <button class="btn w-full bg-purple-600 text-white hover:bg-purple-700">
+                            <span data-es="Actualizar Plan" data-en="Upgrade Plan">Actualizar Plan</span>
+                        </button>
+                    </div>
+
+                    <!-- Elite Plan -->
+                    <div class="pricing-card bg-gradient-to-br from-yellow-400 to-orange-500 text-white border-transparent">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Prismafolio Elite</h3>
+                            <div class="text-5xl font-bold mb-2">$99</div>
+                            <div class="text-yellow-100">
+                                <span data-es="una sola vez" data-en="one time">una sola vez</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 mb-8" role="list">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-white mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Dominio personalizado" data-en="Custom domain">Dominio personalizado</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-white mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Branding avanzado" data-en="Advanced branding">Branding avanzado</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-white mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Soporte 1:1" data-en="1:1 support">Soporte 1:1</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-white mr-3 flex-shrink-0" aria-hidden="true"></i>
+                                <span data-es="Edición colaborativa" data-en="Collaborative editing">Edición colaborativa</span>
+                            </li>
+                        </ul>
+                        <button class="btn w-full bg-white text-orange-500 hover:bg-gray-50 font-bold">
+                            <span data-es="Comprar Ahora" data-en="Buy Now">Comprar Ahora</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center mt-16">
+                    <p class="text-body-large text-gray-600 dark:text-gray-300 mb-6">
+                        <span data-es="💡 Planes anuales con 20% de descuento" data-en="💡 Annual plans with 20% discount">💡 Planes anuales con 20% de descuento</span>
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-body">
+                        <div class="flex items-center">
+                            <span data-es="Dominio prismafolio.app:" data-en="Domain prismafolio.app:">Dominio prismafolio.app:</span>
+                            <span class="font-bold ml-2">$14.91/año</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span data-es="Subdominios .page:" data-en="Subdomains .page:">Subdominios .page:</span>
+                            <span class="font-bold ml-2">$10.79/año</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider max-w-7xl mx-auto"></div>
+
+        <!-- Brand Positioning Section -->
+        <section class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-display mb-6">
+                        <span data-es="🗺️ Posicionamiento Narrativo Final" data-en="🗺️ Final Narrative Positioning">🗺️ Posicionamiento Narrativo Final</span>
+                    </h2>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                    <article class="card text-center">
+                        <div class="text-5xl mb-6" role="img" aria-label="Sparkles">✨</div>
+                        <h3 class="text-headline mb-6">
+                            <span data-es="Claim de Marca" data-en="Brand Claim">Claim de Marca</span>
+                        </h3>
+                        <p class="text-body-large font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span data-es="Prismafolio: Tu historia profesional contada con inteligencia." data-en="Prismafolio: Your professional story told with intelligence.">Prismafolio: Tu historia profesional contada con inteligencia.</span>
+                        </p>
+                    </article>
+
+                    <article class="card text-center">
+                        <div class="text-5xl mb-6" role="img" aria-label="Microphone">🎙️</div>
+                        <h3 class="text-headline mb-6">
+                            <span data-es="Narrativa Corporativa" data-en="Corporate Narrative">Narrativa Corporativa</span>
+                        </h3>
+                        <p class="text-body text-gray-600 dark:text-gray-300">
+                            <span data-es="No todos los talentos saben venderse. No todos los expertos saben narrarse. Prismafolio combina IA, diseño y estrategia para que nunca más te quedes fuera por cómo te presentas." data-en="Not all talents know how to sell themselves. Not all experts know how to tell their story. Prismafolio combines AI, design and strategy so you never get left out again because of how you present yourself.">No todos los talentos saben venderse. No todos los expertos saben narrarse. Prismafolio combina IA, diseño y estrategia para que nunca más te quedes fuera por cómo te presentas.</span>
+                        </p>
+                    </article>
+
+                    <article class="card text-center">
+                        <div class="text-5xl mb-6" role="img" aria-label="Compass">🧭</div>
+                        <h3 class="text-headline mb-6">
+                            <span data-es="Rutas de Crecimiento" data-en="Growth Routes">Rutas de Crecimiento</span>
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-center space-x-3">
+                                <span class="text-2xl" role="img" aria-label="Tools">🔧</span>
+                                <span class="font-medium" data-es="Producto" data-en="Product">Producto</span>
+                            </div>
+                            <div class="flex items-center justify-center space-x-3">
+                                <span class="text-2xl" role="img" aria-label="Megaphone">📣</span>
+                                <span class="font-medium" data-es="Marketing" data-en="Marketing">Marketing</span>
+                            </div>
+                            <div class="flex items-center justify-center space-x-3">
+                                <span class="text-2xl" role="img" aria-label="Location pin">📍</span>
+                                <span class="font-medium" data-es="Mercado" data-en="Market">Mercado</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="text-center">
+                    <div class="max-w-4xl mx-auto card gradient-bg text-white p-12">
+                        <h3 class="text-display mb-8">
+                            <span data-es="🏁 Conclusión" data-en="🏁 Conclusion">🏁 Conclusión</span>
+                        </h3>
+                        <p class="text-body-large mb-6 opacity-90">
+                            <span data-es="Prismafolio no es el siguiente Webflow." data-en="Prismafolio is not the next Webflow.">Prismafolio no es el siguiente Webflow.</span>
+                        </p>
+                        <p class="text-headline font-bold mb-8">
+                            <span data-es="Es el primer Prismafolio." data-en="It's the first Prismafolio.">Es el primer Prismafolio.</span>
+                        </p>
+                        <p class="text-body-large opacity-90 leading-relaxed">
+                            <span data-es="Una plataforma que entiende que profesionalizarse no es solo crear un portafolio bonito... es contar quién eres de forma clara, poderosa y memorable, con ayuda de IA." data-en="A platform that understands that professionalizing is not just creating a beautiful portfolio... it's telling who you are in a clear, powerful and memorable way, with the help of AI.">Una plataforma que entiende que profesionalizarse no es solo crear un portafolio bonito... es contar quién eres de forma clara, poderosa y memorable, con ayuda de IA.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-4xl font-bold mb-6 gradient-text">💠 Prismafolio</div>
+                <p class="text-body-large text-gray-400 mb-8 max-w-2xl mx-auto">
+                    <span data-es="Tu universo profesional, diseñado con inteligencia" data-en="Your professional universe, designed with intelligence">Tu universo profesional, diseñado con inteligencia</span>
+                </p>
+                <div class="flex justify-center space-x-8 mb-8" role="list" aria-label="Social media links">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <div class="border-t border-gray-800 pt-8">
+                    <p class="text-caption text-gray-400">
+                        &copy; 2024 Prismafolio. 
+                        <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Theme Management
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Set dark mode as default
+        const initTheme = () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        };
+
+        const updateThemeIcon = (theme) => {
+            const moonIcon = themeToggle.querySelector('.fa-moon');
+            const sunIcon = themeToggle.querySelector('.fa-sun');
+            if (theme === 'dark') {
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+            } else {
+                moonIcon.classList.remove('hidden');
+                sunIcon.classList.add('hidden');
+            }
+        };
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        // Enhanced Language Management
+        const langToggle = document.getElementById('langToggle');
+        let currentLang = 'es'; // Spanish as default
+
+        const updateLanguage = (lang) => {
+            document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                element.textContent = element.getAttribute(`data-${lang}`);
+            });
+            langToggle.querySelector('span').textContent = lang === 'es' ? '🇪🇸 ES' : '🇺🇸 EN';
+            document.documentElement.lang = lang;
+            
+            // Update aria-labels and other attributes
+            document.querySelectorAll('[data-aria-es][data-aria-en]').forEach(element => {
+                element.setAttribute('aria-label', element.getAttribute(`data-aria-${lang}`));
+            });
+        };
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            updateLanguage(currentLang);
+            localStorage.setItem('language', currentLang);
+        });
+
+        // Enhanced Progress Bar
+        const updateProgressBar = () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = scrollPercent + '%';
+            progressBar.setAttribute('aria-valuenow', Math.round(scrollPercent));
+        };
+
+        // Enhanced Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Enhanced Charts with Accessibility
+        const createPerceptionChart = () => {
+            const ctx = document.getElementById('perceptionChart');
+            if (!ctx) return;
+            
+            new Chart(ctx.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['Reclutador', 'Cliente', 'Partner', 'Inversor', 'Mentor'],
+                    datasets: [{
+                        label: 'Percepción Score',
+                        data: [85, 78, 92, 71, 88],
+                        borderColor: 'rgb(99, 102, 241)',
+                        backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                        pointBackgroundColor: 'rgb(99, 102, 241)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(99, 102, 241)',
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20,
+                                font: {
+                                    size: 12
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+        };
+
+        const createCompetitorChart = () => {
+            const ctx = document.getElementById('competitorChart');
+            if (!ctx) return;
+            
+            new Chart(ctx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Tu Perfil', 'Competidor A', 'Competidor B', 'Promedio Sector'],
+                    datasets: [{
+                        label: 'Score de Posicionamiento',
+                        data: [85, 65, 72, 58],
+                        backgroundColor: [
+                            'rgba(99, 102, 241, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                            'rgba(156, 163, 175, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(99, 102, 241)',
+                            'rgb(156, 163, 175)',
+                            'rgb(156, 163, 175)',
+                            'rgb(156, 163, 175)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        };
+
+        // Enhanced Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Enhanced Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+            
+            // Escape key to close tooltips
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.tooltip').forEach(tooltip => {
+                    tooltip.style.visibility = 'hidden';
+                    tooltip.style.opacity = '0';
+                });
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Enhanced Tooltip Management
+        document.querySelectorAll('.tooltip-container button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tooltip = button.nextElementSibling || button.parentElement.querySelector('.tooltip');
+                if (tooltip) {
+                    const isVisible = tooltip.style.visibility === 'visible';
+                    tooltip.style.visibility = isVisible ? 'hidden' : 'visible';
+                    tooltip.style.opacity = isVisible ? '0' : '1';
+                }
+            });
+        });
+
+        // Enhanced Performance Monitoring
+        const loadingStates = new Map();
+
+        const setLoadingState = (element, isLoading) => {
+            if (isLoading) {
+                element.classList.add('loading');
+                loadingStates.set(element, true);
+            } else {
+                element.classList.remove('loading');
+                loadingStates.delete(element);
+            }
+        };
+
+        // Initialize everything when DOM is ready
+        const init = () => {
+            initTheme();
+            updateLanguage(localStorage.getItem('language') || 'es');
+            
+            // Observe feature cards for animations
+            document.querySelectorAll('.feature-card, .pricing-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Initialize charts
+            setTimeout(() => {
+                createPerceptionChart();
+                createCompetitorChart();
+            }, 100);
+        };
+
+        // Event Listeners
+        window.addEventListener('scroll', updateProgressBar);
+        window.addEventListener('load', init);
+        document.addEventListener('DOMContentLoaded', init);
+
+        // Error Handling
+        window.addEventListener('error', (e) => {
+            console.error('Application error:', e.error);
+        });
+
+        // Accessibility Enhancements
+        const announceToScreenReader = (message) => {
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.style.position = 'absolute';
+            announcement.style.left = '-10000px';
+            announcement.style.width = '1px';
+            announcement.style.height = '1px';
+            announcement.style.overflow = 'hidden';
+            announcement.textContent = message;
+            document.body.appendChild(announcement);
+            
+            setTimeout(() => {
+                document.body.removeChild(announcement);
+            }, 1000);
+        };
+
+        // Enhanced Button Interactions
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                const rect = btn.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                btn.appendChild(ripple);
+                
+                setTimeout(() => {
+                    btn.removeChild(ripple);
+                }, 600);
+            });
+        });
+    </script>
+
+    <style>
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDn622Cxdg5Sysq90Vv4Q%2B5S%2FSJWv6ek1owBGbfxAjQb5wXexoLkwridvDetbieN5oBMRxI8kXpoShnlNU3k8ZjDGE3oZtGhZFPWxtJS3z6R0TO7ahhzDP5E1sRpFGL6%2BJ5NED3Z4QnR1u7%2FGS5PK67i1yBiwm7eIpPZ6NIIcHfJi5uVJzoqPp7aZmYM%2FXK4kWd4yCdmRgaeItw9Vv1j8v1%2FYpo8tLZQFB%2BIx%2BcWAx%2FrjewUKOBtPWOhwKhrI50Haatv25McbbELTYRUZq8ej8ERw53G7vVxLW3OxexsqRdXpbBNFAuw2gVhM76Op99PyAbEoxgVXBf0gZshH2yr1%2F%2F%2BAF3qHXs8Ffm%2B0vUTlUuxrsPORLzaeX4wI7tSBU0HP9NlAVKWm0fpKVjj9Grmlaw4xcg2opgEoRuUeL8DMtylXWvuwGJ5aEvetgAXmkq3x52VBxtAZm%2B2pFoBmTZMlh931mCA2jFMlO1CoX8DSAROHAhfU49I%2Bz5M7GdM%2BY1FCzCLpINk1AcWMEMbFCiOQ684%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDn622Cxdg5Sysq90Vv4Q+5S/SJWv6ek1owBGbfxAjQb5wXexoLkwridvDetbieN5oBMRxI8kXpoShnlNU3k8ZjDGE3oZtGhZFPWxtJS3z6R0TO7ahhzDP5E1sRpFGL6+J5NED3Z4QnR1u7/GS5PK67i1yBiwm7eIpPZ6NIIcHfJi5uVJzoqPp7aZmYM/XK4kWd4yCdmRgaeItw9Vv1j8v1/Ypo8tLZQFB+Ix+cWAx/rjewUKOBtPWOhwKhrI50Haatv25McbbELTYRUZq8ej8ERw53G7vVxLW3OxexsqRdXpbBNFAuw2gVhM76Op99PyAbEoxgVXBf0gZshH2yr1//+AF3qHXs8Ffm+0vUTlUuxrsPORLzaeX4wI7tSBU0HP9NlAVKWm0fpKVjj9Grmlaw4xcg2opgEoRuUeL8DMtylXWvuwGJ5aEvetgAXmkq3x52VBxtAZm+2pFoBmTZMlh931mCA2jFMlO1CoX8DSAROHAhfU49I+z5M7GdM+Y1FCzCLpINk1AcWMEMbFCiOQ684=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
