@@ -236,11 +236,11 @@ body {
 /* Mobile adjustments for back to top */
 @media (max-width: 768px) {
     .back-to-top {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 3rem;
-        height: 3rem;
-        font-size: 1rem;
+        bottom: 1rem;
+        right: 1rem;
+        width: 2.75rem;
+        height: 2.75rem;
+        font-size: 0.875rem;
     }
 }
 
@@ -435,6 +435,42 @@ body {
     gap: 0.5rem;
 }
 
+/* Mobile menu toggle button */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: var(--z-tooltip);
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: all var(--transition-fast);
+    margin: 3px 0;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
 .nav-menu {
     display: flex;
     align-items: center;
@@ -481,6 +517,55 @@ body {
 .nav-link:focus::after,
 .nav-link.active::after {
     transform: scaleX(1);
+}
+
+/* Mobile Navigation Styles */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 64px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 64px);
+        background-color: var(--bg-primary);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: var(--spacing-lg);
+        gap: var(--spacing-xs);
+        transition: left var(--transition-base);
+        overflow-y: auto;
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li {
+        width: 100%;
+    }
+    
+    .nav-link {
+        width: 100%;
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 1rem;
+        justify-content: flex-start;
+    }
+    
+    .nav-link::after {
+        display: none;
+    }
+    
+    /* Mobile-specific button styles */
+    .nav-menu .btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* Glassmorphism Effect */
@@ -1076,30 +1161,161 @@ body {
     }
 }
 
-@media (min-width: 768px) {
-    .md\:flex { display: flex; }
-    .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    
-    .grid-cols-2,
-    .grid-cols-3,
-    .grid-cols-4 {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
+/* Mobile-First Responsive Utilities */
+/* Base mobile styles (default) */
+.container {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+    max-width: 100%;
+}
+
+.section {
+    padding: var(--spacing-xl) 0;
+}
+
+.grid {
+    gap: var(--spacing-md);
+}
+
+/* Stack all grids on mobile by default */
+.grid-cols-1,
+.grid-cols-2,
+.grid-cols-3,
+.grid-cols-4,
+.md\:grid-cols-2,
+.md\:grid-cols-3,
+.lg\:grid-cols-2,
+.lg\:grid-cols-3 {
+    grid-template-columns: 1fr;
+}
+
+/* Mobile landscape and up */
+@media (min-width: 640px) {
+    .container {
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
     }
     
     .section {
-        padding: 3rem 0;
+        padding: var(--spacing-2xl) 0;
     }
     
-    .card {
-        padding: 1.5rem;
+    .sm\:flex-row {
+        flex-direction: row;
+    }
+    
+    .sm\:space-x-8 > * + * {
+        margin-left: 2rem;
+    }
+    
+    .sm\:space-y-0 > * + * {
+        margin-top: 0;
     }
 }
 
-/* Tablet Styles */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .grid-cols-3,
-    .grid-cols-4 {
+/* Tablet and up */
+@media (min-width: 768px) {
+    .container {
+        padding-left: var(--spacing-lg);
+        padding-right: var(--spacing-lg);
+    }
+    
+    .section {
+        padding: var(--spacing-3xl) 0;
+    }
+    
+    .md\:flex { display: flex; }
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    
+    .grid {
+        gap: var(--spacing-lg);
+    }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+    .lg\:grid-cols-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    .lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    .lg\:col-span-2 {
+        grid-column: span 2 / span 2;
+    }
+}
+
+/* Mobile-specific overrides */
+@media (max-width: 767px) {
+    /* Responsive text sizing */
+    .text-hero {
+        font-size: 2.5rem;
+    }
+    
+    .text-display {
+        font-size: 2rem;
+    }
+    
+    .text-headline {
+        font-size: 1.5rem;
+    }
+    
+    /* Mobile-friendly spacing */
+    .mb-16 {
+        margin-bottom: var(--spacing-2xl);
+    }
+    
+    /* Responsive cards */
+    .card {
+        padding: var(--spacing-md);
+    }
+    
+    /* Mobile-friendly buttons */
+    .btn {
+        width: 100%;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .flex.gap-4 {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    /* Hide overflow on mobile */
+    body {
+        overflow-x: hidden;
+    }
+    
+    /* Adjust pricing cards */
+    .pricing-card {
+        max-width: 100%;
+    }
+    
+    /* Prevent horizontal scroll */
+    .section-hero,
+    .gradient-bg {
+        overflow-x: hidden;
+    }
+    
+    /* Mobile feature cards */
+    .feature-card {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    /* Mobile timeline */
+    .relative.flex.items-start {
+        padding-left: 0;
+    }
+    
+    .ml-24 {
+        margin-left: 5rem;
     }
 }
 

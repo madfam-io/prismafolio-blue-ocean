@@ -682,6 +682,45 @@
     // Event Handlers
     const eventHandlers = {
         init() {
+            // Mobile menu toggle
+            elements.navToggle = document.getElementById('navToggle');
+            elements.navMenu = document.getElementById('navMenu');
+            if (elements.navToggle && elements.navMenu) {
+                elements.navToggle.addEventListener('click', () => {
+                    const isActive = elements.navMenu.classList.contains('active');
+                    elements.navMenu.classList.toggle('active');
+                    elements.navToggle.classList.toggle('active');
+                    elements.navToggle.setAttribute('aria-expanded', !isActive);
+                    
+                    // Prevent body scroll when menu is open
+                    if (!isActive) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // Close menu when clicking a link
+                elements.navMenu.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        elements.navMenu.classList.remove('active');
+                        elements.navToggle.classList.remove('active');
+                        elements.navToggle.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    });
+                });
+                
+                // Close menu on escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && elements.navMenu.classList.contains('active')) {
+                        elements.navMenu.classList.remove('active');
+                        elements.navToggle.classList.remove('active');
+                        elements.navToggle.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
             // Theme toggle
             elements.themeToggle = document.getElementById('themeToggle');
             if (elements.themeToggle) {

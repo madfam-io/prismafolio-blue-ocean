@@ -1,0 +1,217 @@
+/* Mobile-specific CSS improvements for Prismafolio */
+
+/* Mobile viewport improvements */
+@media (max-width: 768px) {
+    /* Prevent horizontal scroll */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    /* Fix hero section on mobile */
+    .section-hero {
+        padding-top: calc(64px + var(--spacing-xl));
+        min-height: calc(100vh - 64px);
+    }
+    
+    /* Improve text readability on mobile */
+    .text-hero {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+    
+    .text-display {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+    
+    .text-headline {
+        font-size: clamp(1.25rem, 4vw, 1.75rem);
+    }
+    
+    /* Mobile-friendly cards */
+    .card {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    /* Stack pricing cards vertically */
+    .pricing-card {
+        max-width: 100%;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .pricing-card.featured {
+        transform: none;
+    }
+    
+    .pricing-card:hover {
+        transform: none;
+    }
+    
+    /* Mobile tooltips */
+    .tooltip {
+        position: fixed !important;
+        bottom: var(--spacing-lg) !important;
+        left: var(--spacing-sm) !important;
+        right: var(--spacing-sm) !important;
+        top: auto !important;
+        transform: none !important;
+        max-width: none !important;
+    }
+    
+    .tooltip::after {
+        display: none;
+    }
+    
+    /* Mobile-friendly buttons */
+    .btn {
+        width: 100%;
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 1rem;
+    }
+    
+    .flex.gap-4 {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    /* Progress bar thinner on mobile */
+    .progress-bar {
+        height: 2px;
+    }
+    
+    /* Mobile timeline adjustments */
+    .ml-24 {
+        margin-left: 5rem;
+    }
+    
+    /* Mobile feature cards */
+    .feature-card {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    /* Canvas/chart responsiveness */
+    canvas {
+        max-width: 100%;
+        height: auto !important;
+        min-height: 200px;
+        max-height: 300px;
+    }
+    
+    /* Mobile-friendly spacing */
+    .mb-16 {
+        margin-bottom: var(--spacing-2xl);
+    }
+    
+    .mt-16 {
+        margin-top: var(--spacing-2xl);
+    }
+    
+    /* Prevent animations on mobile to improve performance */
+    .animate-float,
+    .animate-bounce-slow,
+    .animate-pulse-slow {
+        animation: none !important;
+    }
+    
+    /* Touch-friendly tap targets */
+    a, button, [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Mobile table scrolling */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    /* Responsive images */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Mobile-friendly footer */
+    footer {
+        padding: var(--spacing-2xl) 0;
+    }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .section-hero {
+        min-height: auto;
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .nav-menu {
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 375px) {
+    :root {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-xs);
+    }
+    
+    .text-hero {
+        font-size: 1.75rem;
+    }
+    
+    .text-display {
+        font-size: 1.5rem;
+    }
+    
+    .card {
+        padding: var(--spacing-sm);
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .btn:hover,
+    .card:hover,
+    .nav-link:hover,
+    .pricing-card:hover {
+        transform: none;
+    }
+    
+    /* Increase touch target sizes */
+    .btn,
+    .nav-link {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Ensure crisp borders on retina displays */
+    .card,
+    .btn,
+    .nav {
+        border-width: 0.5px;
+    }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+    /* Ensure focus indicators are visible */
+    *:focus {
+        outline-offset: 2px;
+        outline-width: 3px;
+    }
+    
+    /* Improve color contrast for small screens */
+    .text-caption,
+    .text-small {
+        color: var(--text-secondary);
+    }
+}
