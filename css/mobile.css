@@ -113,6 +113,13 @@
         animation: none !important;
     }
     
+    /* Mobile-friendly scroll arrow */
+    .scroll-down-arrow {
+        bottom: 1rem !important;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
     /* Touch-friendly tap targets */
     a, button, [role="button"] {
         min-height: 44px;

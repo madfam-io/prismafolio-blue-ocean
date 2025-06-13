@@ -646,6 +646,30 @@ body {
     animation: slide-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* Scroll Down Arrow */
+.scroll-down-arrow {
+    transition: all var(--transition-base);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.scroll-down-arrow:hover {
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.scroll-down-arrow:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-down-arrow {
+        animation: none !important;
+    }
+}
+
 /* Progress Bar */
 .progress-bar {
     position: fixed;
